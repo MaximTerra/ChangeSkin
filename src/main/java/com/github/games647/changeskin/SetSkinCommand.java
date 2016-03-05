@@ -61,7 +61,10 @@ public class SetSkinCommand implements CommandExecutor {
             UUID uuid = UUID.fromString(targetUUID);
             if (targetPlayer.getUniqueId().equals(uuid)) {
                 sender.sendMessage(ChatColor.DARK_GREEN + "Reseting preferences to the default value");
+                getLogger().log(Level.INFO, "Resetting preferences, please wait...");
                 plugin.getUserPreferences().remove(targetPlayer.getUniqueId());
+                getLogger().log(Level.INFO, "Preferences reset!");
+                sender.sendMessage(ChatColor.DARK_GREEN + "Preferences reset !");
             } else {
                 sender.sendMessage(ChatColor.GOLD + "Queued Skin change");
                 plugin.getUserPreferences().put(targetPlayer.getUniqueId(), uuid);
