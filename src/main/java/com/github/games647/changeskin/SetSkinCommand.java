@@ -28,7 +28,7 @@ public class SetSkinCommand implements CommandExecutor {
 
             Player targetPlayer = Bukkit.getPlayerExact(targetPlayerName);
             if (targetPlayer == null) {
-                sender.sendMessage(ChatColor.DARK_RED + "This player isn't online");
+                sender.sendMessage(ChatColor.DARK_RED + "Error: " + ChatColor.GREY + "This player couldn't be found on here");
             } else {
                 setSkinOther(sender, targetPlayer, toSkin);
             }
@@ -50,7 +50,7 @@ public class SetSkinCommand implements CommandExecutor {
         if (toSkin.length() > 16) {
             setSkinUUID(sender, targetPlayer, toSkin);
         } else {
-            sender.sendMessage(ChatColor.GOLD + "Queued name to uuid resolve");
+            sender.sendMessage(ChatColor.GOLD + "Queued name to UUID resolve");
             Bukkit.getScheduler()
                     .runTaskAsynchronously(plugin, new NameResolver(plugin, sender, toSkin, targetPlayer));
         }
@@ -70,7 +70,7 @@ public class SetSkinCommand implements CommandExecutor {
                 Bukkit.getScheduler().runTaskAsynchronously(plugin, skinDownloader);
             }
         } catch (IllegalArgumentException illegalArgumentException) {
-            sender.sendMessage(ChatColor.DARK_RED + "Invalid uuid");
+            sender.sendMessage(ChatColor.DARK_RED + "Invalid UUID");
         }
     }
 }
